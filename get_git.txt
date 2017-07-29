@@ -1,3 +1,5 @@
+https://git-scm.com/
+
 创建版本库：
 1、 创建一个空目录
 2、版本库初始化：#git init
@@ -56,15 +58,54 @@
 ==========
 查看远程库信息，使用git remote -v；
 本地新建的分支如果不推送到远程，对其他人就是不可见的；
-从本地推送分支，使用#git push origin branch-name，如果推送失败，先用#git pull抓取远程的新提交；
+从本地推送分支，使用#git push origin branch-name，如果推送失败，先用#·git pull抓取远程的新提交；
 在本地创建和远程分支对应的分支，使用#git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
 建立本地分支和远程分支的关联，使用#git branch --set-upstream branch-name origin/branch-name；
 从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
 
 
 ============
+标签管理
+创建标签：#git tag <tagname> [commit ID]，默认为HEAD；
+给标签加注释：#git tag -a <tagname> -m "..."；
+用PGP签名标签：git tag -s <tagname> -m "..."；
+查看所有标签：#git tag
+查看标签相关信息：#git show tagname
+推送一个本地标签:#git push origin <tagname>；
+推送全部未推送过的本地标签:#git push origin --tags；
+删除一个本地标签：#git tag -d <tagname>；
+删除一个远程标签：#git push origin :refs/tags/<tagname>。
 
 
+============
+配置文件可参考：https://github.com/github/gitignore
+忽略某些文件时，需要编写.gitignore；
+.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！
+============
+命令别名
+#git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# git config --global alias.co checkout
+# git config --global alias.ci commit
+# git config --global alias.br branch
+修改仓库配置文件.git/config
+[alias]
+    last = log -1
+修改当前用户配置文件：~/.gitconfig
+============
+搭建git服务器：
+#apt-get install git
+#adduser git
+所有需要登录的用户的公钥导入到/home/git/.ssh/authorized_keys
+#git init --bare  /dir/sample.git
+#chown -R git:git sample.git
+修改/etc/passwd
+git:x:1001:1001::::/home/git:/usr/bin/git-shell
+远程克隆仓库：#git clone git@server:/srv/sample.git
+
+要方便管理公钥，用Gitosis；
+要像SVN那样变态地控制权限，用Gitolite。
+
+=============
 将所有修改过的文件加入暂存区
 #git add -u
 无须变更列表，直接将登记在暂存区中的内容提交
