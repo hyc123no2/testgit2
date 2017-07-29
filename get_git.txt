@@ -1,3 +1,14 @@
+创建版本库：
+1、 创建一个空目录
+2、版本库初始化：#git init
+
+查看仓库当前状态：#git status
+查看文件差异：#git diff filename
+
+查看历史记录：#git log/ git log --pretty=oneline
+回退到上一个版本：#git reset --hard HEAD^    PS:上N个版本，HEAD~N
+取消回退：#git reset --hard  ID(被回退版本)  id查看：#git reflog
+
 将所有修改过的文件加入暂存区
 #git add -u
 无须变更列表，直接将登记在暂存区中的内容提交
@@ -6,8 +17,6 @@
 #git pull mirror master
 #git push home
 
-git版本库初始化
-#git init
 添加文件并提交
 #git add -A
 #git commit -m "initialized"
@@ -117,6 +126,9 @@ git重置
 
 #git checkout [-q] [<commit>] [--] <paths>..
 重置的默认值是HEAD，而检出的默认值是暂存区（除非使用--hard参数，否则不重置工作区）
+
+
+https://docs.docker.com/get-started/
 
 
 
