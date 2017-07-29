@@ -5,10 +5,25 @@
 查看仓库当前状态：#git status
 查看文件差异：#git diff filename
 
-查看历史记录：#git log/ git log --pretty=oneline
+查看提交历史记录：#git log/ git log --pretty=oneline
 回退到上一个版本：#git reset --hard HEAD^    PS:上N个版本，HEAD~N
-取消回退：#git reset --hard  ID(被回退版本)  id查看：#git reflog
+回退到指定版本：git reset --hard commit_id
+查看命令历史：#git reflog
+取消回退：#git reset --hard  ID(被回退版本) 
 
+文件往版本库添加需要的两个步骤：
+1、用git add 把文件添加进去，实际上就是把文件修改添加到暂存区（stage）；
+2、用git commit 提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+
+查看工作区和版本库里面最新版本的区别：
+#git diff HEAD -- filename
+=========
+针对于撤销修改
+让文件回到最近一次git commit或git add时的状态，即撤销掉工作区中修改
+#git checkout -- filename
+把暂存区的修改撤销掉（unstage），重新放回工作区
+#git reset HEAD filename
+=========
 将所有修改过的文件加入暂存区
 #git add -u
 无须变更列表，直接将登记在暂存区中的内容提交
